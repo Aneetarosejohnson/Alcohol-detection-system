@@ -1,0 +1,40 @@
+Problem statement:   Develop a microcontroller based prototype which can detect the drunk and drive issue of driver by detecting the consumption of alcohol by the driver.
+Scope of solution:   Reduces the risk of accidents caused by drunk driving.
+Required Components: 
+                     IDE: Tinkercad
+                     Arduino Uno R3
+                     Red LED
+                     220 Ω Resistor
+                     220 Ω Resistor
+                     Gas Sensor (Selected based on availability, for real world aplications can use MQ-3 alcohol sensor)
+                     Piezo buzzer
+
+Link to tinkercad simulation: https://www.tinkercad.com/things/iBgWcmzt81K-alcohol-detection-system?sharecode=iFeu9fLfJGfDzGLQlU9SCv_Z6XYp3jRlx9vwiddoPbg
+
+Code for the solution:
+
+int S = 0;
+
+void setup()
+{
+  pinMode(A5, INPUT);
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+  pinMode(7, OUTPUT);
+ }
+
+void loop()
+{
+  S = analogRead(A5);
+ 
+  if (S>30) 
+  {
+      digitalWrite(13,HIGH);
+      tone(7, 220, 100);
+      delay(200);
+  }
+  else
+  {
+    digitalWrite(13,LOW);
+  }
+}
